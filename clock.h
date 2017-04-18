@@ -22,6 +22,7 @@ public:
 private:
     void onTick();
 
+    void closeEvent(QCloseEvent* e) override;
     void mousePressEvent(QMouseEvent * e) override;
     void mouseReleaseEvent(QMouseEvent * e) override;
     void mouseMoveEvent(QMouseEvent *e) override;

@@ -4,11 +4,18 @@
 #include <QTime>
 #include <QMouseEvent>
 #include <QMenu>
+#include <QSettings>
 
 Clock::Clock(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Clock) {
+
+    QSettings settings;
+    restoreGeometry(settings.value("mainWindowGeometry").toByteArray());
+
     ui->setupUi(this);
+
+    restoreState(settings.value("mainWindowState").toByteArray());
 
     timer.reset(new QTimer(this));
     connect(timer.get(), &QTimer::timeout, this, &Clock::onTick);
@@ -22,6 +29,13 @@ Clock::~Clock() {
 void Clock::onTick() {
     const auto& now = QTime::currentTime();
     ui->timeValue->setText(now.toString("HH:mm:ss"));
+}
+
+void Clock::closeEvent(QCloseEvent* /*e*/)
+{
+    QSettings settings;
+    settings.setValue("mainWindowGeometry", saveGeometry());
+    settings.setValue("mainWindowState", saveState());
 }
 
 void Clock::mousePressEvent(QMouseEvent *e) {
