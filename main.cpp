@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
     QCoreApplication::setApplicationVersion("1.0.0");
 
     Clock w;
-    w.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    w.setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     w.show();
 
     return a.exec();
