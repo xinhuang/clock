@@ -8,3 +8,5 @@ It does the following:
 * top-most window  
 * drag and place anywhere you want  
 
+_It is implemented using QT5, so should be able to run anywhere._
+
