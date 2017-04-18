@@ -3,6 +3,7 @@
 
 #include <QTime>
 #include <QMouseEvent>
+#include <QMenu>
 
 Clock::Clock(QWidget *parent) :
     QMainWindow(parent),
@@ -28,12 +29,23 @@ void Clock::mousePressEvent(QMouseEvent *e) {
     offset = e->globalPos() - this->pos();
 }
 
-void Clock::mouseReleaseEvent(QMouseEvent */*e*/) {
+void Clock::mouseReleaseEvent(QMouseEvent *e) {
     isMoving = false;
+
+    if (e->button() == Qt::RightButton) {
+        std::unique_ptr<QMenu> menu(createMenu());
+        menu->exec(e->globalPos());
+    }
 }
 
 void Clock::mouseMoveEvent(QMouseEvent *e) {
     if (isMoving) {
         move(e->globalPos() - offset);
     }
+}
+
+QMenu* Clock::createMenu() {
+    QMenu* menu= new QMenu(this);
+    menu->addAction(tr("Quit"), this, &Clock::close);
+    return menu;
 }

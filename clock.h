@@ -25,12 +25,13 @@ private:
     void mousePressEvent(QMouseEvent * e) override;
     void mouseReleaseEvent(QMouseEvent * e) override;
     void mouseMoveEvent(QMouseEvent *e) override;
+    QMenu* createMenu();
 
 private:
     Ui::Clock *ui;
     std::unique_ptr<QTimer> timer;
     bool isMoving = false;
-    QPoint pressPos;
+    QPoint offset;
 };
 
 #endif // CLOCK_H
