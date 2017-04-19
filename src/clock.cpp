@@ -31,11 +31,13 @@ void Clock::onTick() {
     ui->timeValue->setText(now.toString("HH:mm:ss"));
 }
 
-void Clock::closeEvent(QCloseEvent* /*e*/)
+void Clock::closeEvent(QCloseEvent* e)
 {
+    timer->stop();
     QSettings settings;
     settings.setValue("mainWindowGeometry", saveGeometry());
     settings.setValue("mainWindowState", saveState());
+    e->accept();
 }
 
 void Clock::mousePressEvent(QMouseEvent *e) {

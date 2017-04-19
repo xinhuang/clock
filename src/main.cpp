@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
 
     Clock w;
     w.setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    w.setAttribute(Qt::WA_QuitOnClose);
     w.show();
 
     return a.exec();
