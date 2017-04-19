@@ -4,7 +4,7 @@ project(clock)
 
 find_package(Qt5Widgets)
 
-aux_source_directory(. SRC_LIST)
+set(SRC_LIST main.cpp clock.cpp)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
